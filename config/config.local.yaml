@@ -1,5 +1,8 @@
 server:
-  http_port: 9000
+  http_port: 7070
+  balancer:
+    random
+#    round_robin
 
 postgres:
   host: localhost

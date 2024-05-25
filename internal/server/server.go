@@ -10,12 +10,16 @@ import (
 	"zlatoivan_ru/internal/config"
 )
 
+type balancerI interface {
+	balance()
+}
+
 type Server struct {
-	try int
+	balancer balancerI
 }
 
 func New() Server {
-	return Server{try: 1}
+	return Server{}
 }
 
 func (s Server) Run(ctx context.Context, cfg config.Server) {
@@ -23,7 +27,7 @@ func (s Server) Run(ctx context.Context, cfg config.Server) {
 	httpServer := &http.Server{
 		Addr:    "localhost:" + cfg.HttpPort,
 		Handler: router,
-	} // http.HandlerFunc(redirectToHTTPS)
+	}
 
 	wg := sync.WaitGroup{}
 

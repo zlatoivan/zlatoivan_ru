@@ -17,7 +17,7 @@ func MainPage(w http.ResponseWriter, r *http.Request) {
 		Message: "FIFA will never regret it",
 	}
 
-	t, _ := template.ParseFiles("templates/index.html")
+	t, _ := template.ParseFiles("static/template/index.html")
 	err := t.Execute(w, data)
 	if err != nil {
 		log.Printf("t.Execute: %v", err)
