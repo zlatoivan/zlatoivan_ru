@@ -14,8 +14,8 @@ func (s Server) createRouter() *chi.Mux {
 	)
 
 	r.Get("/*", LoadStatic)
+
 	r.Get("/", MainPage)
-	r.Get("/balancer", Balancer)
 
 	return r
 }
