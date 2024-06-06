@@ -9,7 +9,7 @@ func (s Server) createRouter() *chi.Mux {
 	r := chi.NewRouter()
 	r.Use(
 		middleware.RequestID,
-		middleware.Logger,
+		//middleware.Logger,
 		middleware.Recoverer,
 	)
 
