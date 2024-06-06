@@ -17,5 +17,5 @@ func MainPage(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("t.Execute: %v", err)
 	}
-	log.Printf("main page")
+	log.Printf(Color("main page", "green"))
 }
