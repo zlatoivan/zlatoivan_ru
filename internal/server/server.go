@@ -10,12 +10,7 @@ import (
 	"zlatoivan_ru/internal/config"
 )
 
-type balancerI interface {
-	balance()
-}
-
 type Server struct {
-	balancer balancerI
 }
 
 func New() Server {

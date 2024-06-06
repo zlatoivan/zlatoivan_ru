@@ -14,7 +14,6 @@ type Config struct {
 
 type Server struct {
 	HttpPort string `yaml:"http_port" env-default:"9000"`
-	Balancer string `yaml:"balancer" env-default:"round_robin"`
 }
 
 type Pg struct {
