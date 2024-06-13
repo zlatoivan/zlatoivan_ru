@@ -23,7 +23,7 @@ func (rec *statusRecorder) WriteHeader(code int) {
 func ReqLogger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		logs := utils.Color("\"", "nCyan")
-		logs += utils.Color(fmt.Sprintf("%s ", req.Method), "nMagenta")
+		logs += utils.Color(fmt.Sprintf("%s ", req.Method), "magenta")
 		scheme := "http"
 		if req.TLS != nil {
 			scheme = "https"
