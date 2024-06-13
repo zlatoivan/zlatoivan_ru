@@ -28,7 +28,7 @@ func ReqLogger(next http.Handler) http.Handler {
 		if req.TLS != nil {
 			scheme = "https"
 		}
-		logs += utils.Color(fmt.Sprintf("%s://%s%s %s\" ", scheme, req.Host, req.URL, req.Proto), "cyan")
+		logs += utils.Color(fmt.Sprintf("%s://%s%s %s\" ", scheme, req.Host, req.URL, req.Proto), "blue")
 
 		rec := statusRecorder{w, 200}
 
@@ -49,9 +49,9 @@ func ReqLogger(next http.Handler) http.Handler {
 		default:
 			color = "red"
 		}
-		logs += utils.Color(fmt.Sprintf("- %d in ", rec.status), color)
+		logs += "- " + utils.Color(fmt.Sprintf("%d ", rec.status), color) + "in "
 		logs += utils.Color(time.Since(t1).String(), "nGreen")
-		logs += "\n\n"
+		logs += "\n"
 		fmt.Print(logs)
 	})
 }
