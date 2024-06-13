@@ -27,7 +27,7 @@ func (rec *statusRecorder) WriteHeader(code int) {
 	rec.ResponseWriter.WriteHeader(code)
 }
 
-func (m *MW) DataLogger(next http.Handler) http.Handler {
+func ReqLogger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		logs := utils.Color("\"", "cyan")
 		logs += utils.Color(fmt.Sprintf("%s ", req.Method), "magenta")
