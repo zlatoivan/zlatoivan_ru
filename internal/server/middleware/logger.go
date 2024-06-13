@@ -4,6 +4,7 @@ package middleware
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -52,6 +53,6 @@ func ReqLogger(next http.Handler) http.Handler {
 		logs += "- " + utils.Color(fmt.Sprintf("%d ", rec.status), color) + "in "
 		logs += utils.Color(time.Since(t1).String(), "nGreen")
 		logs += "\n"
-		fmt.Print(logs)
+		log.Print(logs)
 	})
 }
