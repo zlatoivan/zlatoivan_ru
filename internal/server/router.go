@@ -14,6 +14,7 @@ func (s Server) createRouter() *chi.Mux {
 	)
 
 	r.Get("/*", LoadStatic)
+	r.Get("/favicon.ico", FaviconIco)
 
 	r.Get("/", MainPage)
 
