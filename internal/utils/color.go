@@ -1,4 +1,4 @@
-package server
+package utils
 
 import "fmt"
 
@@ -10,13 +10,19 @@ import "fmt"
 func Color(s string, colorStr string) string {
 	var c int
 	switch colorStr {
-	case "green":
-		c = 92
+	case "nGreen":
+		c = 32
 	case "red":
 		c = 91
+	case "green":
+		c = 92
 	case "yellow":
 		c = 93
 	case "blue":
+		c = 94
+	case "magenta":
+		c = 95
+	case "cyan":
 		c = 96
 	}
 	return fmt.Sprintf("\x1b[%dm%s\x1b[0m", c, s)

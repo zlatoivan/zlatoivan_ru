@@ -4,6 +4,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	"zlatoivan_ru/internal/utils"
 )
 
 type ViewData struct {
@@ -17,5 +19,5 @@ func MainPage(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("t.Execute: %v", err)
 	}
-	log.Printf(Color("main page", "green"))
+	log.Printf(utils.Color("main page", "green"))
 }
