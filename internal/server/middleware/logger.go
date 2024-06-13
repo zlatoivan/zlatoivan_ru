@@ -10,13 +10,6 @@ import (
 	"zlatoivan_ru/internal/utils"
 )
 
-type MW struct {
-}
-
-func New() MW {
-	return MW{}
-}
-
 type statusRecorder struct {
 	http.ResponseWriter
 	status int
