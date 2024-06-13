@@ -10,8 +10,21 @@ import "fmt"
 func Color(s string, colorStr string) string {
 	var c int
 	switch colorStr {
+	// Тускловатые
+	case "nRed":
+		c = 31
 	case "nGreen":
 		c = 32
+	case "nYellow":
+		c = 33
+	case "nBlue":
+		c = 34
+	case "nMagenta":
+		c = 35
+	case "nCyan":
+		c = 36
+
+	// Яркие
 	case "red":
 		c = 91
 	case "green":
@@ -25,5 +38,6 @@ func Color(s string, colorStr string) string {
 	case "cyan":
 		c = 96
 	}
+
 	return fmt.Sprintf("\x1b[%dm%s\x1b[0m", c, s)
 }
