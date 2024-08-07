@@ -41,3 +41,18 @@ func Color(s string, colorStr string) string {
 
 	return fmt.Sprintf("\x1b[%dm%s\x1b[0m", c, s)
 }
+
+func GetColorByStatusCode(status int) string {
+	switch {
+	case status < 200:
+		return "blue"
+	case status < 300:
+		return "green"
+	case status < 400:
+		return "cyan"
+	case status < 500:
+		return "yellow"
+	default:
+		return "red"
+	}
+}
