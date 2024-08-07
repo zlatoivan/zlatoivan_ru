@@ -37,22 +37,11 @@ func ReqLogger(next http.Handler) http.Handler {
 
 		next.ServeHTTP(&rec, req)
 
-		var color string
-		switch {
-		case rec.status < 200:
-			color = "blue"
-		case rec.status < 300:
-			color = "green"
-		case rec.status < 400:
-			color = "cyan"
-		case rec.status < 500:
-			color = "yellow"
-		default:
-			color = "red"
-		}
-		logs += "- " + utils.Color(fmt.Sprintf("%d ", rec.status), color) + "in "
+		statusColor := utils.GetColorByStatusCode(rec.status)
+		logs += "- " + utils.Color(fmt.Sprintf("%d ", rec.status), statusColor) + "in "
 		logs += utils.Color(time.Since(t1).String(), "nGreen")
 		logs += "\n"
+
 		log.Print(logs)
 	})
 }
