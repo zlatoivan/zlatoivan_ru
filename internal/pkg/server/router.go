@@ -1,10 +1,10 @@
 package server
 
 import (
+	mw "zlatoivan_ru/internal/pkg/server/middleware"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-
-	mw "zlatoivan_ru/internal/server/middleware"
 )
 
 func (s Server) createRouter() *chi.Mux {

@@ -1,5 +1,3 @@
-//go:generate minimock -i Producer -o mock/data_logger_mock.go -p mock -g
-
 package middleware
 
 import (
@@ -7,8 +5,7 @@ import (
 	"log"
 	"net/http"
 	"time"
-
-	"zlatoivan_ru/internal/utils"
+	"zlatoivan_ru/internal/pkg/color"
 )
 
 type statusRecorder struct {
@@ -23,25 +20,22 @@ func (rec *statusRecorder) WriteHeader(code int) {
 
 func ReqLogger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		logs := utils.Color("\"", "nCyan")
-		logs += utils.Color(fmt.Sprintf("%s ", req.Method), "magenta")
+		quoteCyan := color.NCyan("\"")
+		method := color.Magenta(fmt.Sprintf("%s", req.Method))
 		scheme := "http"
 		if req.TLS != nil {
 			scheme = "https"
 		}
-		logs += utils.Color(fmt.Sprintf("%s://%s%s %s\" ", scheme, req.Host, req.URL, req.Proto), "nCyan")
+		url := color.NCyan(fmt.Sprintf("%s://%s%s %s", scheme, req.Host, req.URL, req.Proto))
 
 		rec := statusRecorder{w, 200}
-
 		t1 := time.Now()
-
 		next.ServeHTTP(&rec, req)
+		reqTime := color.NGreen(time.Since(t1).String())
 
-		statusColor := utils.GetColorByStatusCode(rec.status)
-		logs += "- " + utils.Color(fmt.Sprintf("%d ", rec.status), statusColor) + "in "
-		logs += utils.Color(time.Since(t1).String(), "nGreen")
-		logs += "\n"
+		coloredStatus := color.GetColoredStatus(rec.status)
 
+		logs := fmt.Sprintf("%s%s %s%s - %s in %s", quoteCyan, method, url, quoteCyan, coloredStatus, reqTime)
 		log.Print(logs)
 	})
 }
