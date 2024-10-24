@@ -99,8 +99,8 @@ generate-proto: ## generate proto
 			--openapiv2_out=swagger \
  			api.proto
 
-.PHONY: linter
-linter: ## check by golangci linter
+.PHONY: lint
+lint: ## check by golangci linter
 	golangci-lint run
 
 .PHONY: docker-rm-volume

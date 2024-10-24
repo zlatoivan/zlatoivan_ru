@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donut Animation</title>
-    <link rel="stylesheet" type="text/css" href="donut.css">
-    <script src="donut.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style/donut.css">
+    <script src="/static/script/donut.js"></script>
 </head>
-<body>
-    <h1>ASCII Donut Animation</h1>
-    <div id="donut" onclick="anim1()"></div>
-    <button onclick="anim1()">Toggle ASCII Animation</button>
 
+<body>
     <h1>Canvas Donut Animation</h1>
-    <canvas id="canvasdonut" width="320" height="240" onclick="anim2()"></canvas>
-    <button onclick="anim2()">Toggle Canvas Animation</button>
+    <canvas id="canvasDonut" width="300" height="240" onclick="canvasDonutAnimation()"></canvas>
+
+    <h1>ASCII Donut Animation</h1>
+    <div id="asciiDonut" onclick="asciiDonutAnimation()"></div>
 </body>
 </html>

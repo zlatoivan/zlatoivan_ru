@@ -19,24 +19,24 @@ func New() Server {
 
 func (s Server) Run(ctx context.Context, cfg config.Server) {
 	router := s.createRouter()
-	httpServer := &http.Server{
-		Addr:    "localhost:" + cfg.HttpPort,
+	httpServer := http.Server{ // nolint:gosec
+		Addr:    "localhost:" + cfg.HTTPPort,
 		Handler: router,
 	}
 
 	wg := sync.WaitGroup{}
 
-	log.Printf("[httpServer] starting on %s\n", cfg.HttpPort)
+	log.Printf("[httpServer] starting on %s\n", cfg.HTTPPort)
 
 	wg.Add(1)
 	go func() {
-		httpServerRun(httpServer)
+		httpServerRun(&httpServer)
 		wg.Done()
 	}()
 
 	wg.Add(1)
 	go func() {
-		gracefulShutdown(ctx, httpServer)
+		gracefulShutdown(ctx, &httpServer)
 		wg.Done()
 	}()
 

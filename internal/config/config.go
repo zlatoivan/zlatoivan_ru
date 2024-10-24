@@ -13,7 +13,7 @@ type Config struct {
 }
 
 type Server struct {
-	HttpPort string `yaml:"http_port" env-default:"9000"`
+	HTTPPort string `yaml:"http_port" env-default:"9000"`
 }
 
 type Pg struct {

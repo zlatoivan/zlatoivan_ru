@@ -1,7 +1,7 @@
 package server
 
 import (
-	"net/http"
+	"zlatoivan_ru/internal/pkg/server/handlers"
 	mw "zlatoivan_ru/internal/pkg/server/middleware"
 
 	"github.com/go-chi/chi/v5"
@@ -10,20 +10,17 @@ import (
 
 func (s Server) createRouter() *chi.Mux {
 	r := chi.NewRouter()
+
 	r.Use(
-		//middleware.RequestID,
-		//middleware.Logger,
-		mw.ReqLogger,
+		mw.RequestLoggerMW,
+		mw.StaticFileMW,
 		middleware.Recoverer,
 	)
 
-	r.Get("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))).ServeHTTP)
+	r.Get("/favicon.ico", handlers.FaviconIco)
 
-	r.Get("/*", LoadStatic)
-	r.Get("/favicon.ico", FaviconIco)
-
-	r.Get("/", MainPage)
-	r.Get("/donut", Donut)
+	r.Get("/", handlers.MainPage)
+	r.Get("/donut", handlers.Donut)
 
 	return r
 }

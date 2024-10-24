@@ -2,14 +2,15 @@ body {
     font-family: monospace;
     text-align: center;
 }
-#donut {
+
+#asciiDonut {
     width: 80ch; /* 80 characters wide */
     height: 28em; /* 22 lines tall */
     overflow: hidden; /* Hide overflow */
     white-space: pre; /* Preserve whitespace for ASCII art */
     margin: 0 auto; /* Center the div */
 }
-#canvasdonut {
-    display: block;
+
+#canvasDonut {
     margin: 0 auto;
 }

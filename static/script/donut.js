@@ -1,7 +1,7 @@
 (function() {
     var _onload = function() {
-        var pretag = document.getElementById('donut');
-        var canvastag = document.getElementById('canvasdonut');
+        var pretag = document.getElementById('asciiDonut');
+        var canvastag = document.getElementById('canvasDonut');
 
         var tmr1 = undefined, tmr2 = undefined;
         var A=1, B=1;
@@ -41,7 +41,7 @@
             pretag.innerHTML = b.join("");
         };
 
-        window.anim1 = function() {
+        window.asciiDonutAnimation = function() {
             if(tmr1 === undefined) {
                 tmr1 = setInterval(asciiframe, 50);
             } else {
@@ -89,7 +89,7 @@
             }
         }
 
-        window.anim2 = function() {
+        window.canvasDonutAnimation = function() {
             if(tmr2 === undefined) {
                 tmr2 = setInterval(canvasframe, 50);
             } else {
