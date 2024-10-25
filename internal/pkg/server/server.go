@@ -24,9 +24,9 @@ func (s Server) Run(ctx context.Context, cfg config.Server) {
 		Handler: router,
 	}
 
-	wg := sync.WaitGroup{}
-
 	log.Printf("[httpServer] starting on %s\n", cfg.HTTPPort)
+
+	wg := sync.WaitGroup{}
 
 	wg.Add(1)
 	go func() {

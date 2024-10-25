@@ -112,3 +112,12 @@ gen-ssl-cert: ## generate fresh ssl certificate
 	openssl genrsa -out server.key 2048  # Сгенерировать приватный ключ (.key)
 	openssl req -new -x509 -sha256 -key server.key -out server.crt -days 365 -nodes  # Сгенерировать публичный ключ (.crt), но основе приватного
 	mv -f server.key server.crt internal/server/certs/  # Поместить оба файла в папку /certificate
+
+
+ssh:
+	ssh root@147.45.106.47
+
+new-ssh:
+	ssh-keygen -R 147.45.106.47 && \
+	ssh-copy-id root@147.45.106.47 && \
+	ssh root@147.45.106.47

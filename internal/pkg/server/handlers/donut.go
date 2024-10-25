@@ -4,19 +4,32 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strings"
 
 	"zlatoivan_ru/internal/pkg/color"
+	"zlatoivan_ru/internal/pkg/donut"
 )
 
-func Donut(w http.ResponseWriter, _ *http.Request) {
+func Donut(w http.ResponseWriter, r *http.Request) {
+	userAgent := r.Header.Get("User-Agent")
+	if strings.Contains(userAgent, "curl") {
+		err := donut.SendDonutToConsole(w, r)
+		if err != nil {
+			log.Printf("sendDonutToConsole: %v", err)
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		}
+		log.Print(color.Green("curl donut"))
+		return
+	}
+
 	t, err := template.ParseFiles("static/template/donut.html")
 	if err != nil {
 		log.Printf("template.ParseFiles: %v", err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
-	err = t.Execute(w, "")
 
+	err = t.Execute(w, "")
 	if err != nil {
 		log.Printf("t.Execute: %v", err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
