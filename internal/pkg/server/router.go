@@ -12,8 +12,8 @@ func (s Server) createRouter() *chi.Mux {
 	r := chi.NewRouter()
 
 	r.Use(
-		mw.RequestLoggerMW,
-		mw.StaticFileMW,
+		mw.RequestLogger,
+		mw.StaticFileLoader,
 		middleware.Recoverer,
 		middleware.Logger,
 	)
