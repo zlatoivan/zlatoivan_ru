@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # important
-sudo apt install -y apt-transport-https ca-certificates software-properties-common gnupg lsb-release debian-keyring debian-archive-keyring curl
 sudo apt update
+sudo apt install -y apt-transport-https ca-certificates software-properties-common gnupg lsb-release debian-keyring debian-archive-keyring curl
 
 # go
 sudo add-apt-repository -y ppa:longsleep/golang-backports
