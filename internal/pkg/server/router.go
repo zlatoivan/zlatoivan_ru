@@ -15,7 +15,6 @@ func (s Server) createRouter() *chi.Mux {
 		mw.RequestLogger,
 		mw.StaticFileLoader,
 		middleware.Recoverer,
-		middleware.Logger,
 	)
 
 	r.Get("/favicon.ico", handlers.FaviconIco)

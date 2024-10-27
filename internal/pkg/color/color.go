@@ -2,7 +2,6 @@ package color
 
 import (
 	"fmt"
-	"strconv"
 )
 
 // Тускловатые
@@ -57,17 +56,54 @@ func Cyan(s string) string {
 	return fmt.Sprintf("\x1b[96m%s\x1b[0m", s)
 }
 
-func GetColoredStatus(status int) string {
-	switch {
-	case status < 200:
-		return Blue(strconv.Itoa(status))
-	case status < 300:
-		return Green(strconv.Itoa(status))
-	case status < 400:
-		return Cyan(strconv.Itoa(status))
-	case status < 500:
-		return Yellow(strconv.Itoa(status))
-	default:
-		return Red(strconv.Itoa(status))
-	}
+// Тускловатые
+
+func BNRed(s string) string {
+	return fmt.Sprintf("\x1b[31;1m%s\x1b[0m", s)
+}
+
+func BNGreen(s string) string {
+	return fmt.Sprintf("\x1b[32;1m%s\x1b[0m", s)
+}
+
+func BNYellow(s string) string {
+	return fmt.Sprintf("\x1b[33;1m%s\x1b[0m", s)
+}
+
+func BNBlue(s string) string {
+	return fmt.Sprintf("\x1b[34;1m%s\x1b[0m", s)
+}
+
+func BNMagenta(s string) string {
+	return fmt.Sprintf("\x1b[35;1m%s\x1b[0m", s)
+}
+
+func BNCyan(s string) string {
+	return fmt.Sprintf("\x1b[36;1m%s\x1b[0m", s)
+}
+
+// Жирные яркие
+
+func BRed(s string) string {
+	return fmt.Sprintf("\x1b[91;1m%s\x1b[0m", s)
+}
+
+func BGreen(s string) string {
+	return fmt.Sprintf("\x1b[92;1m%s\x1b[0m", s)
+}
+
+func BYellow(s string) string {
+	return fmt.Sprintf("\x1b[93;1m%s\x1b[0m", s)
+}
+
+func BBlue(s string) string {
+	return fmt.Sprintf("\x1b[94;1m%s\x1b[0m", s)
+}
+
+func BMagenta(s string) string {
+	return fmt.Sprintf("\x1b[95;1m%s\x1b[0m", s)
+}
+
+func BCyan(s string) string {
+	return fmt.Sprintf("\x1b[96;1m%s\x1b[0m", s)
 }
