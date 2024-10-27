@@ -1,20 +1,12 @@
-FROM golang:1.22
+FROM golang:1.22.5
+
 LABEL authors="ivan"
 
 COPY go.mod go.sum ./
 RUN go mod download
 
-#RUN go install github.com/pressly/goose/cmd/goose
-
 COPY . .
 
-RUN go build -o main cmd/server/main.go
+RUN go build cmd/server/main.go -o zlatoivan_ru
 
-CMD ["./main"]
-
-
-
-#WORKDIR /Homework
-#RUN go get github.com/pressly/goose/cmd/goose@latest
-#RUN go get -d -v ./...
-#RUN go install -v ./...
+CMD ["./zlatoivan_ru"]
