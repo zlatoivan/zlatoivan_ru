@@ -114,10 +114,14 @@ gen-ssl-cert: ## generate fresh ssl certificate
 	mv -f server.key server.crt internal/server/certs/  # Поместить оба файла в папку /certificate
 
 
-ssh:
+# ---------- ssh ----------
+
+.PHONY: ssh
+ssh: ## connect to ssh
 	ssh root@147.45.106.47
 
-new-ssh:
+.PHONY: new-ssh
+new-ssh: ## connect to ssh with password
 	ssh-keygen -R 147.45.106.47 && \
 	ssh-copy-id root@147.45.106.47 && \
 	ssh root@147.45.106.47

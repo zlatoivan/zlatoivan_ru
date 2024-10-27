@@ -5,6 +5,6 @@ services:
     environment:
       - CONFIG_PATH
     ports:
-      - '9000:9000'
+      - '7070:7070'
     hostname:
       localhost
