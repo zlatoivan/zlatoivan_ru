@@ -11,4 +11,4 @@ RUN go build -o zlatoivan cmd/server/main.go
 
 CMD ["./zlatoivan"]
 
-EXPOSE 7072
+EXPOSE 7070

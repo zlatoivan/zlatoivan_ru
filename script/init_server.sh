@@ -11,7 +11,7 @@ sudo apt install -y golang-go
 mkdir -p $HOME/go/bin
 
 # nvim
-sudo add-apt-repository ppa:neovim-ppa/stable
+sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt update
 sudo apt install -y neovim
 
@@ -36,7 +36,6 @@ EOL
 source ~/.config/fish/config.fish
 
 # starship
-sudo apt install -y curl
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 cat > ~/.config/starship.toml <<EOL
