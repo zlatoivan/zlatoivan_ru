@@ -8,6 +8,7 @@ sudo apt install -y apt-transport-https ca-certificates software-properties-comm
 sudo add-apt-repository -y ppa:longsleep/golang-backports
 sudo apt update
 sudo apt install -y golang-go
+mkdir -p $HOME/go/bin
 
 # nvim
 sudo add-apt-repository ppa:neovim-ppa/stable
@@ -29,7 +30,10 @@ chsh -s /usr/bin/fish $USER
 cat > ~/.config/fish/config.fish <<EOL
 set fish_greeting
 starship init fish | source
+set -gx GOPATH $HOME/go
+set -gx PATH $PATH $GOPATH/bin
 EOL
+source ~/.config/fish/config.fish
 
 # starship
 sudo apt install -y curl
@@ -39,6 +43,7 @@ cat > ~/.config/starship.toml <<EOL
 [line_break]
 disabled = true
 EOL
+source ~/.config/starship.toml
 
 starship preset nerd-font-symbols >> ~/.config/starship.toml
 

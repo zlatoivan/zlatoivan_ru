@@ -7,6 +7,8 @@ RUN go mod download
 
 COPY . .
 
-RUN go build cmd/server/main.go -o zlatoivan_ru
+RUN go build -o zlatoivan cmd/server/main.go
 
-CMD ["./zlatoivan_ru"]
+CMD ["./zlatoivan"]
+
+EXPOSE 7072

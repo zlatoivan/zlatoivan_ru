@@ -11,6 +11,10 @@ help: ## display this help screen
 compose-up: ## up docker compose
 	docker-compose -f docker-compose.yaml up
 
+.PHONY: compose-up-build
+compose-up-build: ## up and build docker compose
+	docker-compose -f docker-compose.yaml up --build
+
 .PHONY: compose-down
 compose-down: ## down docker compose
 	docker-compose -f docker-compose.yaml down

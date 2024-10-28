@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   app:
     build: .
@@ -5,15 +7,13 @@ services:
     environment:
       - CONFIG_PATH
     ports:
-      - '7070:7070'
-    hostname:
-      localhost
+      - '7072:7072'
 
-  caddy:
-    image: alpine
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+#  caddy:
+#    image: alpine
+#    restart: unless-stopped
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    volumes:
+#      - $PWD/Caddyfile:/etc/caddy/Caddyfile
