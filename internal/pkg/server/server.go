@@ -20,7 +20,7 @@ func New() Server {
 func (s Server) Run(ctx context.Context, cfg config.Server) {
 	router := s.createRouter()
 	httpServer := http.Server{ // nolint:gosec
-		Addr:    "localhost:" + cfg.HTTPPort,
+		Addr:    ":" + cfg.HTTPPort,
 		Handler: router,
 	}
 
