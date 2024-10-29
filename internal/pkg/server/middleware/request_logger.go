@@ -33,7 +33,7 @@ func (crw *customResponseWriter) Status() int {
 	return crw.statusCode
 }
 
-func getReqTime(w http.ResponseWriter, req *http.Request, next http.Handler) (string, string, string) {
+func getReqResults(w http.ResponseWriter, req *http.Request, next http.Handler) (string, string, string) {
 	customRespWriter := customResponseWriter{w, http.StatusOK, 0}
 	t1 := time.Now()
 	next.ServeHTTP(&customRespWriter, req)
@@ -67,9 +67,9 @@ func RequestLogger(next http.Handler) http.Handler {
 		proto := getProto(req)
 		url := color.NCyan(fmt.Sprintf("%s://%s%s %s", proto, req.Host, req.URL, req.Proto))
 		ip := getIP(req)
-		reqTime, status, bytes := getReqTime(w, req, next)
+		reqTime, status, respBytes := getReqResults(w, req, next)
 
-		logs := fmt.Sprintf("%s%s %s%s from %s - %s %s in %s", quote, method, url, quote, ip, status, bytes, reqTime)
+		logs := fmt.Sprintf("%s%s %s%s from %s - %s %s in %s", quote, method, url, quote, ip, status, respBytes, reqTime)
 		log.Print(logs)
 	})
 }
