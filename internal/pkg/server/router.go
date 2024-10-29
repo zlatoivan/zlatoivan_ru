@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func (s Server) createRouter() *chi.Mux {
@@ -17,8 +18,11 @@ func (s Server) createRouter() *chi.Mux {
 		middleware.Recoverer,
 	)
 
-	r.Get("/favicon.ico", handlers.FaviconIco)
+	r.Handle("/metrics", promhttp.Handler())
 
+	r.NotFound(handlers.PageNotFound)
+
+	r.Get("/favicon.ico", handlers.FaviconIco)
 	r.Get("/", handlers.MainPage)
 	r.Get("/donut", handlers.Donut)
 

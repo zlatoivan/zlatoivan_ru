@@ -10,15 +10,16 @@ import (
 	"zlatoivan_ru/internal/pkg/donut"
 )
 
-func Donut(w http.ResponseWriter, r *http.Request) {
-	userAgent := r.Header.Get("User-Agent")
+func Donut(w http.ResponseWriter, req *http.Request) {
+	userAgent := req.Header.Get("User-Agent")
 	if strings.Contains(userAgent, "curl") {
-		err := donut.SendDonutToConsole(w, r)
+		err := donut.SendDonutToConsole(w, req)
 		if err != nil {
 			log.Printf("sendDonutToConsole: %v", err)
 			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		}
 		log.Print(color.Green("curl donut"))
+		w.WriteHeader(http.StatusOK)
 		return
 	}
 
@@ -37,4 +38,5 @@ func Donut(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Print(color.Green("donut"))
+	w.WriteHeader(http.StatusOK)
 }
