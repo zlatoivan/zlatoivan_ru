@@ -24,5 +24,4 @@ func MainPage(w http.ResponseWriter, _ *http.Request) {
 	}
 
 	log.Print(color.Green("main page"))
-	w.WriteHeader(http.StatusOK)
 }

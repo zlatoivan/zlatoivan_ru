@@ -8,7 +8,7 @@ import (
 
 func Metric(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		if req.Method == http.MethodConnect {
+		if req.Method == http.MethodGet {
 			metric.GetRequestsCounter.Inc()
 		}
 		next.ServeHTTP(w, req)

@@ -19,7 +19,6 @@ func Donut(w http.ResponseWriter, req *http.Request) {
 			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		}
 		log.Print(color.Green("curl donut"))
-		w.WriteHeader(http.StatusOK)
 		return
 	}
 
@@ -38,5 +37,4 @@ func Donut(w http.ResponseWriter, req *http.Request) {
 	}
 
 	log.Print(color.Green("donut"))
-	w.WriteHeader(http.StatusOK)
 }

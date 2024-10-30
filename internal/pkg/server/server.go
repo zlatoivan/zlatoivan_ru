@@ -4,20 +4,18 @@ import (
 	"context"
 	"log"
 	"net/http"
-	"sync"
 	"time"
 
 	"github.com/zlatoivan/zlatoivan_ru/internal/config"
 )
 
-type Server struct {
-}
+type Server struct{}
 
 func New() Server {
 	return Server{}
 }
 
-func (s Server) Run(ctx context.Context, cfg config.Server) {
+func (s Server) Run(ctx context.Context, cfg config.Server) error {
 	router := s.createRouter()
 	httpServer := http.Server{
 		Addr:              ":" + cfg.HTTPPort,
@@ -30,21 +28,15 @@ func (s Server) Run(ctx context.Context, cfg config.Server) {
 
 	log.Printf("[httpServer] starting on %s\n", cfg.HTTPPort)
 
-	wg := sync.WaitGroup{}
-
-	wg.Add(1)
 	go func() {
 		httpServerRun(&httpServer)
-		wg.Done()
 	}()
 
-	wg.Add(1)
 	go func() {
 		gracefulShutdown(ctx, &httpServer)
-		wg.Done()
 	}()
 
-	wg.Wait()
+	return nil
 }
 
 func httpServerRun(httpServer *http.Server) {

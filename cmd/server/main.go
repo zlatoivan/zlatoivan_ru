@@ -31,7 +31,7 @@ func bootstrap(ctx context.Context) error {
 
 	server1 := server.New()
 
-	server1.Run(ctx, cfg.Server)
+	err = server1.Run(ctx, cfg.Server)
 	if err != nil {
 		return fmt.Errorf("server1.Run: %w", err)
 	}

@@ -34,13 +34,18 @@ func (crw *customResponseWriter) Status() int {
 	return crw.statusCode
 }
 
+// Bytes returns the captured bytes
+func (crw *customResponseWriter) Bytes() int {
+	return crw.bytes
+}
+
 func getReqResults(w http.ResponseWriter, req *http.Request, next http.Handler) (string, string, string) {
-	customRespWriter := customResponseWriter{w, http.StatusOK, 0}
+	customRespWriter := customResponseWriter{ResponseWriter: w}
 	t1 := time.Now()
 	next.ServeHTTP(&customRespWriter, req)
 	reqTime := color.NGreen(time.Since(t1).String())
 	status := color.GetColoredStatus(customRespWriter.Status())
-	bytes := color.BNBlue(strconv.Itoa(customRespWriter.bytes) + "B")
+	bytes := color.BNBlue(strconv.Itoa(customRespWriter.Bytes()) + "B")
 	return reqTime, status, bytes
 }
 

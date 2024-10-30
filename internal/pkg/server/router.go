@@ -12,10 +12,10 @@ func (s Server) createRouter() *chi.Mux {
 	r := chi.NewRouter()
 
 	r.Use(
-		middleware.Recoverer,
 		mw.RequestLogger,
 		mw.StaticFileLoader,
 		mw.Metric,
+		middleware.Recoverer,
 	)
 
 	r.Handle("/metrics", promhttp.Handler())
