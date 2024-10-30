@@ -19,9 +19,13 @@ func New() Server {
 
 func (s Server) Run(ctx context.Context, cfg config.Server) {
 	router := s.createRouter()
-	httpServer := http.Server{ // nolint:gosec
-		Addr:    ":" + cfg.HTTPPort,
-		Handler: router,
+	httpServer := http.Server{
+		Addr:              ":" + cfg.HTTPPort,
+		Handler:           router,
+		ReadHeaderTimeout: 5 * time.Second,
+		ReadTimeout:       30 * time.Second,
+		WriteTimeout:      30 * time.Second,
+		IdleTimeout:       60 * time.Second,
 	}
 
 	log.Printf("[httpServer] starting on %s\n", cfg.HTTPPort)
