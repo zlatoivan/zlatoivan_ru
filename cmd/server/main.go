@@ -6,8 +6,9 @@ import (
 	"log"
 	"os/signal"
 	"syscall"
-	"zlatoivan_ru/internal/config"
-	"zlatoivan_ru/internal/pkg/server"
+
+	"github.com/zlatoivan/zlatoivan_ru/internal/config"
+	"github.com/zlatoivan/zlatoivan_ru/internal/pkg/server"
 )
 
 func main() {

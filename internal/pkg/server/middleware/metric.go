@@ -2,7 +2,8 @@ package middleware
 
 import (
 	"net/http"
-	"zlatoivan_ru/internal/pkg/metric"
+
+	"github.com/zlatoivan/zlatoivan_ru/internal/pkg/metric"
 )
 
 func Metric(next http.Handler) http.Handler {

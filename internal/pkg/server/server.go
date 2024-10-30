@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"zlatoivan_ru/internal/config"
+	"github.com/zlatoivan/zlatoivan_ru/internal/config"
 )
 
 type Server struct {

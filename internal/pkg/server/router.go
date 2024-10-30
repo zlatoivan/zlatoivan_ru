@@ -1,12 +1,11 @@
 package server
 
 import (
-	"zlatoivan_ru/internal/pkg/server/handlers"
-	mw "zlatoivan_ru/internal/pkg/server/middleware"
-
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/zlatoivan/zlatoivan_ru/internal/pkg/server/handlers"
+	mw "github.com/zlatoivan/zlatoivan_ru/internal/pkg/server/middleware"
 )
 
 func (s Server) createRouter() *chi.Mux {

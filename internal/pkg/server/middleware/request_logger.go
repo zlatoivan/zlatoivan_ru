@@ -6,7 +6,8 @@ import (
 	"net/http"
 	"strconv"
 	"time"
-	"zlatoivan_ru/internal/pkg/color"
+
+	"github.com/zlatoivan/zlatoivan_ru/internal/pkg/color"
 )
 
 type customResponseWriter struct {

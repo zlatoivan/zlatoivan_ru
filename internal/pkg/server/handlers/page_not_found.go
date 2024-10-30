@@ -3,7 +3,8 @@ package handlers
 import (
 	"log"
 	"net/http"
-	"zlatoivan_ru/internal/pkg/color"
+
+	"github.com/zlatoivan/zlatoivan_ru/internal/pkg/color"
 )
 
 // PageNotFound informs that the page is not found

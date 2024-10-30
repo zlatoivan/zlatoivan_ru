@@ -1,4 +1,4 @@
-module zlatoivan_ru
+module github.com/zlatoivan/zlatoivan_ru
 
 go 1.22
 

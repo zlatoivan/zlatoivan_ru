@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"zlatoivan_ru/internal/pkg/color"
-	"zlatoivan_ru/internal/pkg/donut"
+	"github.com/zlatoivan/zlatoivan_ru/internal/pkg/color"
+	"github.com/zlatoivan/zlatoivan_ru/internal/pkg/donut"
 )
 
 func Donut(w http.ResponseWriter, req *http.Request) {
