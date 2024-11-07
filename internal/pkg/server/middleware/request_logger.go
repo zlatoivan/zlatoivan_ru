@@ -40,7 +40,11 @@ func (crw *customResponseWriter) Bytes() int {
 }
 
 func getReqResults(w http.ResponseWriter, req *http.Request, next http.Handler) (string, string, string) {
-	customRespWriter := customResponseWriter{ResponseWriter: w}
+	customRespWriter := customResponseWriter{
+		ResponseWriter: w,
+		statusCode:     http.StatusOK,
+		bytes:          0,
+	}
 	t1 := time.Now()
 	next.ServeHTTP(&customRespWriter, req)
 	reqTime := color.NGreen(time.Since(t1).String())
