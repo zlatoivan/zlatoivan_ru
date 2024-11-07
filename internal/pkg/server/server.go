@@ -9,16 +9,22 @@ import (
 	"github.com/zlatoivan/zlatoivan_ru/internal/config"
 )
 
-type Server struct{}
+const colon = ":"
 
-func New() Server {
-	return Server{}
+type Server interface {
+	Run(ctx context.Context, cfg config.Server) error
 }
 
-func (s Server) Run(ctx context.Context, cfg config.Server) error {
-	router := s.createRouter()
+type server struct{}
+
+func New() Server {
+	return server{}
+}
+
+func (s server) Run(ctx context.Context, cfg config.Server) error {
+	router := createRouter()
 	httpServer := http.Server{
-		Addr:              ":" + cfg.HTTPPort,
+		Addr:              colon + cfg.HTTPPort,
 		Handler:           router,
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       30 * time.Second,

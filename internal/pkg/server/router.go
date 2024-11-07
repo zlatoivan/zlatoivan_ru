@@ -8,7 +8,7 @@ import (
 	mw "github.com/zlatoivan/zlatoivan_ru/internal/pkg/server/middleware"
 )
 
-func (s Server) createRouter() *chi.Mux {
+func createRouter() *chi.Mux {
 	r := chi.NewRouter()
 
 	r.Use(
