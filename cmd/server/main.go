@@ -29,11 +29,11 @@ func bootstrap(ctx context.Context) error {
 		return fmt.Errorf("config.New: %w", err)
 	}
 
-	server1 := server.New()
+	httpServer := server.New()
 
-	err = server1.Run(ctx, cfg.Server)
+	err = httpServer.Run(ctx, cfg.HTTPServer)
 	if err != nil {
-		return fmt.Errorf("server1.Run: %w", err)
+		return fmt.Errorf("httpServer.Run: %w", err)
 	}
 
 	<-ctx.Done()

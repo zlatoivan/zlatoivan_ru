@@ -12,3 +12,17 @@ linters:
     - staticcheck
     - gosimple
     - unused # will be used instead of varcheck + deadcode + structcheck. More info https://github.com/golangci/golangci-lint/issues/1841
+
+issues:
+  exclude-use-default: false
+  exclude:
+    - should have a package comment
+    - don't use an underscore in package name
+    # EXC0001 errcheck: Almost all programs ignore errors on these functions and in most cases it's ok
+    # - Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*print(f|ln)?|os\.(Un)?Setenv). is not checked
+    # - should check returned error before deferring
+  exclude-rules:
+    - path: _test\.go
+      text: "consider removing or renaming it as _"
+      linters:
+        - revive

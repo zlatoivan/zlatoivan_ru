@@ -69,7 +69,7 @@ func getIP(req *http.Request) string {
 	return ip
 }
 
-// RequestLogger prints information about the request
+// RequestLogger - логгирует информацию о запросе
 func RequestLogger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		quote := color.NCyan("\"")

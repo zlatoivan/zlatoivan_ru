@@ -11,36 +11,35 @@ import (
 
 const colon = ":"
 
+// Server - интерфейс http-сервера
 type Server interface {
-	Run(ctx context.Context, cfg config.Server) error
+	Run(ctx context.Context, cfg config.HTTPServer) error
 }
 
 type server struct{}
 
+// New - создает http-сервер
 func New() Server {
 	return server{}
 }
 
-func (s server) Run(ctx context.Context, cfg config.Server) error {
+// Run - метод запуска http-сервера
+func (s server) Run(ctx context.Context, cfg config.HTTPServer) error {
 	router := createRouter()
 	httpServer := http.Server{
-		Addr:              colon + cfg.HTTPPort,
+		Addr:              colon + cfg.Port,
 		Handler:           router,
-		ReadHeaderTimeout: 5 * time.Second,
-		ReadTimeout:       30 * time.Second,
-		WriteTimeout:      30 * time.Second,
-		IdleTimeout:       60 * time.Second,
+		ReadHeaderTimeout: cfg.ReadHeaderTimeout,
+		ReadTimeout:       cfg.ReadTimeout,
+		WriteTimeout:      cfg.WriteTimeout,
+		IdleTimeout:       cfg.IdleTimeout,
 	}
 
-	log.Printf("[httpServer] starting on %s\n", cfg.HTTPPort)
+	go httpServerRun(&httpServer)
 
-	go func() {
-		httpServerRun(&httpServer)
-	}()
+	go gracefulShutdown(ctx, &httpServer)
 
-	go func() {
-		gracefulShutdown(ctx, &httpServer)
-	}()
+	log.Printf("[httpServer] starting on %s\n", cfg.Port)
 
 	return nil
 }

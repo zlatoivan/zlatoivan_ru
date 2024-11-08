@@ -2,6 +2,7 @@ package color
 
 import "strconv"
 
+// GetColoredStatus - возвращает статус в соответствующем цвете
 func GetColoredStatus(status int) string {
 	switch {
 	case status < 200:

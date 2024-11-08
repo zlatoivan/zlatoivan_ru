@@ -70,6 +70,7 @@ func genFrame(A float64, B float64) string {
 	return string(b)
 }
 
+// SendDonutToConsole - отправляет сгенерированный фрейм в консоль клиента
 func SendDonutToConsole(w http.ResponseWriter, r *http.Request) error {
 	_, err := fmt.Fprint(w, "\u001B[H\u001B[2J") // clear previous stdout
 	if err != nil {
