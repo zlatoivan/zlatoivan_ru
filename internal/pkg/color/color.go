@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+// Тусклые
+
 // NRed - тусклый красный
 func NRed(s string) string {
 	return fmt.Sprintf("\x1b[31m%s\x1b[0m", s)
@@ -33,6 +35,8 @@ func NMagenta(s string) string {
 func NCyan(s string) string {
 	return fmt.Sprintf("\x1b[36m%s\x1b[0m", s)
 }
+
+// Яркие
 
 // Red - яркий красный
 func Red(s string) string {
@@ -64,6 +68,8 @@ func Cyan(s string) string {
 	return fmt.Sprintf("\x1b[96m%s\x1b[0m", s)
 }
 
+// Тусклые жирные
+
 // BNRed - тусклый жирный красный
 func BNRed(s string) string {
 	return fmt.Sprintf("\x1b[31;1m%s\x1b[0m", s)
@@ -93,6 +99,8 @@ func BNMagenta(s string) string {
 func BNCyan(s string) string {
 	return fmt.Sprintf("\x1b[36;1m%s\x1b[0m", s)
 }
+
+// Яркие жирные
 
 // BRed - яркий жирный красный
 func BRed(s string) string {

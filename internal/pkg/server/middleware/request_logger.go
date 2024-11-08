@@ -10,52 +10,9 @@ import (
 	"github.com/zlatoivan/zlatoivan_ru/internal/pkg/color"
 )
 
-type customResponseWriter struct {
-	http.ResponseWriter
-	statusCode int
-	bytes      int
-}
-
-// WriteHeader overrides WriteHeader to capture status code
-func (crw *customResponseWriter) WriteHeader(status int) {
-	crw.statusCode = status
-	crw.ResponseWriter.WriteHeader(status)
-}
-
-// Write captures the number of bytes written to the response.
-func (crw *customResponseWriter) Write(b []byte) (int, error) {
-	n, err := crw.ResponseWriter.Write(b)
-	crw.bytes += n
-	return n, err
-}
-
-// Status returns the captured statusCode code
-func (crw *customResponseWriter) Status() int {
-	return crw.statusCode
-}
-
-// Bytes returns the captured bytes
-func (crw *customResponseWriter) Bytes() int {
-	return crw.bytes
-}
-
-func getReqResults(w http.ResponseWriter, req *http.Request, next http.Handler) (string, string, string) {
-	customRespWriter := customResponseWriter{
-		ResponseWriter: w,
-		statusCode:     http.StatusOK,
-		bytes:          0,
-	}
-	t1 := time.Now()
-	next.ServeHTTP(&customRespWriter, req)
-	reqTime := color.NGreen(time.Since(t1).String())
-	status := color.GetColoredStatus(customRespWriter.Status())
-	bytes := color.BNBlue(strconv.Itoa(customRespWriter.Bytes()) + "B")
-	return reqTime, status, bytes
-}
-
 func getProto(req *http.Request) string {
 	scheme := "http"
-	if req.TLS != nil {
+	if req.TLS != nil || req.Header.Get("X-Forwarded-Proto") == "https" {
 		scheme = "https"
 	}
 	return scheme
@@ -75,11 +32,20 @@ func RequestLogger(next http.Handler) http.Handler {
 		quote := color.NCyan("\"")
 		method := color.BNMagenta(req.Method)
 		proto := getProto(req)
-		url := color.NCyan(fmt.Sprintf("%s://%s%s %s", proto, req.Host, req.URL, req.Proto))
-		ip := getIP(req)
-		reqTime, status, respBytes := getReqResults(w, req, next)
+		url := fmt.Sprintf("%s://%s%s", proto, req.Host, req.URL)
+		protoFull := color.NCyan(req.Proto)
 
-		logs := fmt.Sprintf("%s%s %s%s from %s - %s %s in %s", quote, method, url, quote, ip, status, respBytes, reqTime)
+		ip := getIP(req)
+
+		customRespWriter := NewWrapResponseWriter(w)
+		timeStart := time.Now()
+		next.ServeHTTP(customRespWriter, req)
+		reqTime := color.NGreen(time.Since(timeStart).String())
+		status := color.Status(customRespWriter.Status())
+		bytes := color.BNBlue(strconv.Itoa(customRespWriter.BytesWritten()) + "B")
+
+		// "GET https://zlatoivan.ru/ HTTP/1.1" from 46.138.82.38 - 200 9078B in 1.342625ms
+		logs := fmt.Sprintf("%s%s %s %s%s from %s - %s %s in %s", quote, method, url, protoFull, quote, ip, status, bytes, reqTime)
 		log.Print(logs)
 	})
 }

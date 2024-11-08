@@ -9,12 +9,6 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// Config - основной конфиг
-type Config struct {
-	HTTPServer `yaml:"http_server"`
-	Postgres   `yaml:"postgres"`
-}
-
 // HTTPServer - конфиг http-сервера
 type HTTPServer struct {
 	Port              string        `yaml:"port"`
@@ -31,6 +25,12 @@ type Postgres struct {
 	DBName   string `yaml:"db_name"`
 	User     string `yaml:"user"`
 	Password string `yaml:"password"`
+}
+
+// Config - основной конфиг
+type Config struct {
+	HTTPServer `yaml:"http_server"`
+	Postgres   `yaml:"postgres"`
 }
 
 func getConfigPath() (string, error) {

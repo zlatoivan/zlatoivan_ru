@@ -2,8 +2,8 @@ package color
 
 import "strconv"
 
-// GetColoredStatus - возвращает статус в соответствующем цвете
-func GetColoredStatus(status int) string {
+// Status - возвращает код статуса в соответствующем цвете
+func Status(status int) string {
 	switch {
 	case status < 200:
 		return Blue(strconv.Itoa(status))
