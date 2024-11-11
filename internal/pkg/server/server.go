@@ -9,8 +9,6 @@ import (
 	"github.com/zlatoivan/zlatoivan_ru/internal/config"
 )
 
-const colon = ":"
-
 // Server - интерфейс http-сервера
 type Server interface {
 	Run(ctx context.Context, cfg config.HTTPServer) error
@@ -25,7 +23,10 @@ func New() Server {
 
 // Run - метод запуска http-сервера
 func (s server) Run(ctx context.Context, cfg config.HTTPServer) error {
+	const colon = ":"
+
 	router := createRouter()
+
 	httpServer := http.Server{
 		Addr:              colon + cfg.Port,
 		Handler:           router,

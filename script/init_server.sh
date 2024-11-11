@@ -4,16 +4,16 @@
 sudo apt update
 sudo apt install -y apt-transport-https ca-certificates software-properties-common gnupg lsb-release debian-keyring debian-archive-keyring curl
 
+# nvim
+sudo add-apt-repository -y ppa:neovim-ppa/stable
+sudo apt update
+sudo apt install -y neovim
+
 # go
 sudo add-apt-repository -y ppa:longsleep/golang-backports
 sudo apt update
 sudo apt install -y golang-go
 mkdir -p $HOME/go/bin
-
-# nvim
-sudo add-apt-repository -y ppa:neovim-ppa/stable
-sudo apt update
-sudo apt install -y neovim
 
 # make
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
@@ -24,6 +24,7 @@ sudo apt install -y make
 sudo apt-add-repository -y ppa:fish-shell/release-3
 sudo apt update
 sudo apt install -y fish
+wait
 
 chsh -s /usr/bin/fish $USER
 
@@ -37,6 +38,7 @@ source ~/.config/fish/config.fish
 
 # starship
 curl -sS https://starship.rs/install.sh | sh -s -- -y
+wait
 
 cat > ~/.config/starship.toml <<EOL
 [line_break]
@@ -56,7 +58,7 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo 
 sudo apt update
 sudo apt install -y caddy
 
-rsync -a ~/zlatoivan_ru/Caddifile /etc/caddy/Caddyfile
+rsync -a ~/zlatoivan_ru/Caddyfile /etc/caddy/Caddyfile
 sudo systemctl restart caddy
 
 # docker

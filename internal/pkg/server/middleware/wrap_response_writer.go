@@ -27,24 +27,24 @@ func NewWrapResponseWriter(w http.ResponseWriter) WrapResponseWriter {
 }
 
 // WriteHeader overrides WriteHeader to capture status code
-func (c *wrapResponseWriter) WriteHeader(statusCode int) {
-	c.statusCode = statusCode
-	c.ResponseWriter.WriteHeader(statusCode)
+func (w *wrapResponseWriter) WriteHeader(statusCode int) {
+	w.statusCode = statusCode
+	w.ResponseWriter.WriteHeader(statusCode)
 }
 
 // Write captures the number of bytes written to the response.
-func (c *wrapResponseWriter) Write(b []byte) (int, error) {
-	n, err := c.ResponseWriter.Write(b)
-	c.bytes += n
+func (w *wrapResponseWriter) Write(b []byte) (int, error) {
+	n, err := w.ResponseWriter.Write(b)
+	w.bytes += n
 	return n, err
 }
 
 // Status returns the captured status code
-func (c *wrapResponseWriter) Status() int {
-	return c.statusCode
+func (w *wrapResponseWriter) Status() int {
+	return w.statusCode
 }
 
 // BytesWritten returns the captured bytes
-func (c *wrapResponseWriter) BytesWritten() int {
-	return c.bytes
+func (w *wrapResponseWriter) BytesWritten() int {
+	return w.bytes
 }

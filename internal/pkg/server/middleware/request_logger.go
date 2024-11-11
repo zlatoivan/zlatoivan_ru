@@ -32,17 +32,17 @@ func RequestLogger(next http.Handler) http.Handler {
 		quote := color.NCyan("\"")
 		method := color.BNMagenta(req.Method)
 		proto := getProto(req)
-		url := fmt.Sprintf("%s://%s%s", proto, req.Host, req.URL)
+		url := color.NCyan(fmt.Sprintf("%s://%s%s", proto, req.Host, req.URL))
 		protoFull := color.NCyan(req.Proto)
 
 		ip := getIP(req)
 
-		customRespWriter := NewWrapResponseWriter(w)
+		wrapRespWriter := NewWrapResponseWriter(w)
 		timeStart := time.Now()
-		next.ServeHTTP(customRespWriter, req)
+		next.ServeHTTP(wrapRespWriter, req)
 		reqTime := color.NGreen(time.Since(timeStart).String())
-		status := color.Status(customRespWriter.Status())
-		bytes := color.BNBlue(strconv.Itoa(customRespWriter.BytesWritten()) + "B")
+		status := color.Status(wrapRespWriter.Status())
+		bytes := color.BNBlue(strconv.Itoa(wrapRespWriter.BytesWritten()) + "B")
 
 		// "GET https://zlatoivan.ru/ HTTP/1.1" from 46.138.82.38 - 200 9078B in 1.342625ms
 		logs := fmt.Sprintf("%s%s %s %s%s from %s - %s %s in %s", quote, method, url, protoFull, quote, ip, status, bytes, reqTime)
