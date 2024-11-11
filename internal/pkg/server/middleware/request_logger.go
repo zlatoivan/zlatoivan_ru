@@ -32,7 +32,7 @@ func RequestLogger(next http.Handler) http.Handler {
 		quote := color.NCyan("\"")
 		method := color.BNMagenta(req.Method)
 		proto := getProto(req)
-		url := fmt.Sprintf("%s://%s%s", proto, req.Host, req.URL)
+		url := color.NCyan(fmt.Sprintf("%s://%s%s", proto, req.Host, req.URL))
 		protoFull := color.NCyan(req.Proto)
 
 		ip := getIP(req)

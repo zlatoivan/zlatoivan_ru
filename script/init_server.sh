@@ -24,6 +24,7 @@ sudo apt install -y make
 sudo apt-add-repository -y ppa:fish-shell/release-3
 sudo apt update
 sudo apt install -y fish
+wait
 
 chsh -s /usr/bin/fish $USER
 
@@ -37,6 +38,7 @@ source ~/.config/fish/config.fish
 
 # starship
 curl -sS https://starship.rs/install.sh | sh -s -- -y
+wait
 
 cat > ~/.config/starship.toml <<EOL
 [line_break]
