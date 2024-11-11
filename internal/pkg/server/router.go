@@ -1,6 +1,8 @@
 package server
 
 import (
+	"net/http"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -13,11 +15,11 @@ func createRouter() *chi.Mux {
 
 	r.Use(
 		mw.RequestLogger,
-		mw.StaticFileLoader,
 		mw.Metric,
 		middleware.Recoverer,
 	)
 
+	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	r.Handle("/metrics", promhttp.Handler())
 
 	r.NotFound(handlers.PageNotFound)
