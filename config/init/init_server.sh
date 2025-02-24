@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# clone backend
+git clone https://github.com/zlatoivan/zlatoivan_ru.git
+
 # important
 sudo apt update
 sudo apt install -y apt-transport-https ca-certificates software-properties-common gnupg lsb-release debian-keyring debian-archive-keyring curl
@@ -24,33 +27,13 @@ sudo apt install -y make
 sudo apt-add-repository -y ppa:fish-shell/release-3
 sudo apt update
 sudo apt install -y fish
-wait
 
 chsh -s /usr/bin/fish $USER
-
-cat > ~/.config/fish/config.fish <<EOL
-set fish_greeting
-starship init fish | source
-set -gx GOPATH $HOME/go
-set -gx PATH $PATH $GOPATH/bin
-EOL
-source ~/.config/fish/config.fish
+rsync -a ~/zlatoivan_ru/config/init/config.fish ~/.config/fish/config.fish
 
 # starship
 curl -sS https://starship.rs/install.sh | sh -s -- -y
-wait
-
-cat > ~/.config/starship.toml <<EOL
-[line_break]
-disabled = true
-EOL
-source ~/.config/starship.toml
-
-starship preset nerd-font-symbols >> ~/.config/starship.toml
-
-# clone backend
-cd
-git clone https://github.com/zlatoivan/zlatoivan_ru.git
+rsync -a ~/zlatoivan_ru/config/init/starship.toml ~/.config/starship.toml
 
 # caddy
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
@@ -58,7 +41,7 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo 
 sudo apt update
 sudo apt install -y caddy
 
-rsync -a ~/zlatoivan_ru/Caddyfile /etc/caddy/Caddyfile
+rsync -a ~/zlatoivan_ru/config/init/Caddyfile /etc/caddy/Caddyfile
 sudo systemctl restart caddy
 
 # docker
