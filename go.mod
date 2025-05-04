@@ -1,6 +1,6 @@
 module github.com/zlatoivan/zlatoivan_ru
 
-go 1.22
+go 1.23.5
 
 require (
 	github.com/go-chi/chi/v5 v5.1.0

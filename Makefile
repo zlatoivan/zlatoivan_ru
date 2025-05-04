@@ -7,27 +7,27 @@ help: ## display this help screen
 
 # ---------- run ----------
 
-.PHONY: compose-up
-compose-up: ## up docker compose
+.PHONY: env-up
+env-up: ## up docker compose
 	docker-compose -f docker-compose.yaml up
 
-.PHONY: compose-up-build
-compose-up-build: ## up and build docker compose
+.PHONY: env-up-build
+env-up-build: ## up and build docker compose
 	docker-compose -f docker-compose.yaml up --build
 
-.PHONY: compose-down
-compose-down: ## down docker compose
+.PHONY: env-down
+env-down: ## down docker compose
 	docker-compose -f docker-compose.yaml down
 
 
 # ---------- run local ----------
 
-.PHONY: compose-up-local
-compose-up-local: ## up docker compose local
+.PHONY: env-up-local
+env-up-local: ## up docker compose local
 	docker-compose -f docker-compose.local.yaml up -d
 
-.PHONY: compose-down-local
-compose-down-local: ## down docker compose local
+.PHONY: env-down-local
+env-down-local: ## down docker compose local
 	docker-compose -f docker-compose.local.yaml down
 
 .PHONY: run
@@ -73,21 +73,32 @@ migration-down-test: ## migration down test
 
 # ---------- tests ----------
 
-.PHONY: test
-test: ## run tests
-	go test -v -count=2 -p=3 ./...
+GO_COVER_EXCLUDE:="mock|.*.pb(..*)?.go|config|main.go|postgres.go"
 
-.PHONY: test-integration
-test-integration: ## run integration tests
+.PHONY: t
+t: ## run tests
+	go test ./... -v -count=2 -p=3 -race -coverprofile=cover.out.tmp $(RUN_ARGS)
+
+.PHONY: t-integration
+t-integration: ## run integration tests
 	CONFIG_PATH=$(CURDIR)/config/config_test.yaml go test ./... -tags=integration -v
 
-.PHONY: test-colored
-test-colored: ## run tests colored
+.PHONY: t-colored
+t-colored: ## run tests colored
 	grc go test -v -count=2 -p=3 ./...
 
-.PHONY: test-integration-colored
-test-integration-colored: ## run integration tests colored
+.PHONY: t-integration-colored
+t-integration-colored: ## run integration tests colored
 	CONFIG_PATH=$(CURDIR)/config/config_test.yaml grc go test ./... -tags=integration -v
+
+.PHONY: t-cov ## get tests coverage
+t-cov:
+	make t
+	grep -vE ${GO_COVER_EXCLUDE} cover.out.tmp > cover.out || cp cover.out.tmp cover.out
+	go tool cover -func=cover.out | sort -k 3 -n
+	go tool cover -html=cover.out
+	rm cover.out.tmp
+	rm cover.out
 
 
 # ---------- rare ----------
