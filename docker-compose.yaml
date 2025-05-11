@@ -3,17 +3,8 @@ services:
     build: .
     restart: unless-stopped
     environment:
-      - CONFIG_PATH
-      - TZ=Europe/Moscow
+      - CONFIG_PATH=/config/values_production.yaml
     ports:
-      - '7070:7070'
-
-  caddy:
-    image: caddy:2.9.1-alpine
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
+      - "127.0.0.1:7070:7070"
     volumes:
-#      - $PWD/Caddyfile:/etc/caddy/Caddyfile
-       - /Users/izlatovratskiy/GolandProjects/zlatoivan_ru/config/init/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/config:/config
