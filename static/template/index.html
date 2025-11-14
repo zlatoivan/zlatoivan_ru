@@ -1,86 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CV</title>
+    <title>Иван Златовратский — Golang Backend Developer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
-    </style>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="/static/style/index.css">
 </head>
 
 <body class="w3-light-grey">
 
-<!-- Page Container -->
+<!-- Страница -->
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
 
-    <!-- The Grid -->
+    <!-- Grid -->
     <div class="w3-row-padding">
 
-        <!-- Left Column -->
+        <!-- Левый столбец -->
         <div class="w3-third">
 
-            <div class="w3-white w3-text-grey w3-card-4">
+            <div class="w3-white w3-text-grey w3-card-4 profile-card">
                 <div class="w3-display-container">
-                    <img src="/static/images/face_square.png" style="width:100%" alt="Avatar">
+                    <img class="avatar" src="/static/images/face_square.png" alt="Фото профиля">
                 </div>
                 <div class="w3-container">
-                    <p class="w3-display-bottomleft w3-container w3-text-black"><h2>Златовратский Иван Антонович</h2></p>
+                    <h2 class="name">Златовратский Иван Антонович</h2>
 
-                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Golang Backend Developer</p>
-                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Moscow, RU</p>
-                    <p><i class="fa fa-github fa-fw w3-margin-right w3-large w3-text-teal"></i><a target="_blank" rel="noopener noreferrer" href="https://github.com/zlatoivan">github</a></p>
-                    <p><i class="fa fa-telegram fa-fw w3-margin-right w3-large w3-text-teal"></i><a target="_blank" rel="noopener noreferrer" href="https://t.me/ivantheboss">telegram</a></p>
-                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>zlatoivan4@gmail.com</p>
+                    <p class="role"><i class="fa fa-briefcase fa-fw w3-large w3-text-teal"></i><span>Golang Backend Developer</span></p>
+                    <p class="location"><i class="fa fa-home fa-fw w3-large w3-text-teal"></i><span>Moscow, RU</span></p>
+                    <p class="contact" style="gap: 10px; flex-wrap: wrap;">
+                        <a class="link-btn" rel="noopener noreferrer" href="https://github.com/zlatoivan">
+                            <i class="fa fa-github"></i><span>GitHub</span>
+                        </a>
+                        <a class="link-btn" target="_blank" rel="noopener noreferrer" href="https://t.me/ivantheboss">
+                            <i class="fa fa-telegram"></i><span>Telegram</span>
+                        </a>
+                        <span class="link-btn" style="cursor: default;">
+                            <i class="fa fa-envelope"></i><span>zlatoivan4@gmail.com</span>
+                        </span>
+                    </p>
                     <hr>
 
                     <p class="w3-large"><b><i class="fa fa-check-square fa-fw w3-margin-right w3-text-teal"></i>Ключевые навыки</b></p>
-                    <p>
-                        <span>Golang</span>&emsp;
-                        <span>Python</span>&emsp;
-                        <span>PostgreSQL</span>&emsp;
-                        <span>Docker</span>&emsp;
-                    </p>
-                    <p>
-                        <span>Prometheus</span>&emsp;
-                        <span>Grafana</span>&emsp;
-                        <span>Redis</span>&emsp;
-                        <span>Linux</span>&emsp;
-                    </p>
-                    <p>
-                        <span>Testing</span>&emsp;
-                        <span>HTML</span>&emsp;
-                    </p>
+                    <ul class="chip-list">
+                        <li>Golang</li>
+                        <li>PostgreSQL</li>
+                        <li>Docker</li>
+                        <li>Kafka</li>
+                        <li>ClickHouse</li>
+                        <li>Redis</li>
+                        <li>Grafana</li>
+                        <li>Prometheus</li>
+                        <li>S3</li>
+                        <li>Testing</li>
+                        <li>Linux</li>
+                        <li>HTML</li>
+                    </ul>
                     <hr>
 
                     <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Иностранные языки</b></p>
-                    <p>Английский B2</p>
+                    <p class="muted">Английский B2</p>
                     <br>
                 </div>
             </div>
-
-            <!-- End Left Column -->
         </div>
 
-        <!-- Right Column -->
+        <!-- Правый столбец -->
         <div class="w3-twothird">
 
-            <div class="w3-container w3-card w3-white w3-margin-bottom">
-                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Опыт работы</h2>
+            <!-- Опыт работы -->
+            <div class="w3-container w3-card w3-white w3-margin-bottom section-card">
+                <h2 class="w3-text-grey w3-padding-16 section-title"><i class="fa fa-suitcase fa-fw w3-xxlarge w3-text-teal"></i><span>Опыт работы</span></h2>
                 <div class="w3-container">
-                    <h5 class="w3-opacity"><b>Ozon Bank (Разработчик информационных систем)</b></h5>
-                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Июль 2024 - <span class="w3-tag w3-teal w3-round">Настоящее время</span></h6>
+                    <h5 class="w3-opacity"><b>Ozon Bank (Software Engineer | Golang)</b></h5>
+                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2024 - <span class="w3-tag w3-teal w3-round">Настоящее время</span></h6>
                     <p>Группа разработки сервиса быстрых платежей. Разрабатываю системы для успешного взаимодействия
                     Ozon Банка с НСПК, ЦБ и внешним миром.</p>
                     <hr>
                 </div>
 
                 <div class="w3-container">
-                    <h5 class="w3-opacity"><b>ГП 115 (Оператор ЭВМ)</b></h5>
-                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Декабрь 2021 - Июль 2024</h6>
+                    <h5 class="w3-opacity"><b>Hospital 115 (Software Engineer | Python)</b></h5>
+                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2022 - 2024</h6>
                     <p>В медицинской организации мной были обнаружены однообразные рабочие процессы,
                         которые занимали много ручной обработки врачами. Я написал программы, которые
                         автоматизируют данные процессы. Использовал парсинг данных с медицинских инструментов
@@ -92,8 +96,9 @@
                 </div>
             </div>
 
-            <div class="w3-container w3-card w3-white w3-margin-bottom">
-                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-mortar-board fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Образование</h2>
+            <!-- Образование -->
+            <div class="w3-container w3-card w3-white w3-margin-bottom section-card">
+                <h2 class="w3-text-grey w3-padding-16 section-title"><i class="fa fa-mortar-board fa-fw w3-xxlarge w3-text-teal"></i><span>Образование</span></h2>
                 <div class="w3-container">
                     <h5 class="w3-opacity"><b>МГТУ им. Н.Э. Баумана (Высшее, Магистр)</b></h5>
                     <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2024 - 2026</h6>
@@ -119,42 +124,36 @@
                 </div>
             </div>
 
-            <div class="w3-container w3-card w3-white">
-                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-trophy fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Обо мне</h2>
+            <!-- Проекты, достижения -->
+            <div class="w3-container w3-card w3-white section-card">
+                <h2 class="w3-text-grey w3-padding-16 section-title"><i class="fa fa-trophy fa-fw w3-xxlarge w3-text-teal"></i><span>Обо мне</span></h2>
                 <div class="w3-container">
                     <h5 class="w3-opacity"><b>Проекты, достижения</b></h5>
-                    <ul>
-                        <p><li>Автоматизировал рутину в больнице</li></p>
-                        <p><li>Успешно окончил курс от Ozon - Route 256 (Junior Go-разработчик)</li></p>
-                        <p><li>Призер хакатона Неймарк, Нижний Новгород</li></p>
-                        <p><li>Сделал веб-платформу для блогов с базой данных - аналог социальной сети</li></p>
-                        <p><li>Написал бэкенд для мобильного приложения - игры</li></p>
+                    <ul class="list-clean">
+                        <li>Курс Ozon Route256 Junior - макс. балл</li>
+                        <li>Курс Ozon Route256 Middle - почти макс. балл</li>
+                        <li>Курс Ozon System Design</li>
+                        <li>Призер хакатона “Неймарк” (Нижний Новгород)</li>
+                        <li>Разработал веб‑платформу для блогов</li>
+                        <li>Разработал бэкенд для мобильного приложения‑игры</li>
+                        <li>Курс Эксперт Microsoft Excel (МГТУ им. Баумана)</li>
                     </ul>
                     <hr>
                 </div>
-                <div class="w3-container">
-                    <h5 class="w3-opacity"><b>Личные качества</b></h5>
-                    <ul>
-                        <p><li>Люблю глубоко погружаться в предметную область, осваивая ее</li></p>
-                        <p><li>Не боюсь трудностей</li></p>
-                        <p><li>Ответственный</li></p>
-                    </ul>
-                    <br>
-                </div>
             </div>
 
-            <!-- End Right Column -->
+            <!-- Конец правой колонки -->
         </div>
 
         <!-- End Grid -->
     </div>
     <br>
 
-    <!-- End Page Container -->
+    <!-- Конец страницы -->
 </div>
 
 <footer class="w3-container w3-teal w3-center w3-margin-top">
-    <p onclick="window.location.href='/donut'">© zlatoivan</p>
+    <p onclick="window.location.href='/donut'">© zlatoivan 🍩</p>
 </footer>
 
 </body>

@@ -1,34 +1,34 @@
-
 # ---------- help ----------
+
 .PHONY: help
 help: ## display this help screen
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ {printf "  \033[36m%-24s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 
-# ---------- run ----------
+# ---------- compose ----------
 
-.PHONY: env-up
-env-up: ## up docker compose
-	docker-compose -f docker-compose.yaml up
+.PHONY: compose-up
+compose-up: ## up docker compose
+	docker compose up -d --build
+	make app-logs
 
-.PHONY: env-up-build
-env-up-build: ## up and build docker compose
-	docker-compose -f docker-compose.yaml up --build
+.PHONY: compose-down
+compose-down: ## down docker compose
+	docker compose down
 
-.PHONY: env-down
-env-down: ## down docker compose
-	docker-compose -f docker-compose.yaml down
+.PHONY: app-logs
+app-logs: ## show app container logs
+	docker logs -f zlatoivan_ru-app-1
 
+# ---------- local ----------
 
-# ---------- run local ----------
+.PHONY: compose-up-local
+compose-up-local: ## up docker compose local
+	docker compose up -d
 
-.PHONY: env-up-local
-env-up-local: ## up docker compose local
-	docker-compose -f docker-compose.local.yaml up -d
-
-.PHONY: env-down-local
-env-down-local: ## down docker compose local
-	docker-compose -f docker-compose.local.yaml down
+.PHONY: compose-down-local
+compose-down-local: ## down docker compose local
+	docker compose down
 
 .PHONY: run
 run: ## run local
